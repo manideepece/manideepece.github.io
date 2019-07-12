@@ -1,0 +1,2630 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        input {
+            border: none;
+            border-bottom: 1px solid black;
+        }
+
+        body{
+            font-size: 15px;
+        }
+
+        /* Customize the label (the container) */
+        .container {
+            /*display: block;*/
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            font-size: 22px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+            /* Hide the browser's default checkbox */
+            .container input {
+                position: absolute;
+                opacity: 0;
+                cursor: pointer;
+                height: 0;
+                width: 0;
+            }
+
+        /* Create a custom checkbox */
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 25px;
+            width: 25px;
+            background-color: white;
+            border: 1px solid black;
+        }
+
+        /* On mouse-over, add a grey background color */
+        .container:hover input ~ .checkmark {
+            background-color: #ccc;
+        }
+
+        /* When the checkbox is checked, add a blue background */
+        .container input:checked ~ .checkmark {
+            background-color: #2196F3;
+        }
+
+        /* Create the checkmark/indicator (hidden when not checked) */
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        /* Show the checkmark when checked */
+        .container input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        /* Style the checkmark/indicator */
+        .container .checkmark:after {
+            left: 9px;
+            top: 5px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>
+    <!--<script src="https://raw.githubusercontent.com/CodeYellowBV/html2canvas/master/build/html2canvas.js"></script>-->
+    <!--<script src="https://raw.githubusercontent.com/CodeYellowBV/html2canvas/master/build/html2canvas.min.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            $('#cmd').click(function () {
+                
+
+
+                var pdf = new jsPDF('p', 'pt', 'letter');
+                pdf.internal.scaleFactor = 2.25;
+                var options = {
+                    pagesplit: true
+                };
+                pdf.addHTML($('#content')[0], 15, 20, options, function () {
+                    pdf.save('Test.pdf');
+                });
+
+
+               
+            });
+        });
+
+    </script>
+</head>
+<body id="content">
+    <div class="pages">
+        <table border="1" cellspacing="0" cellpadding="0" width="100%">
+            <tbody>
+                <tr>
+                    <td width="307" valign="top">
+                        <p>
+                            Pain Management Centers of America
+                        </p>
+                        <p>
+                            <label class="container">
+                                Paducah, KY
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">
+                                Marion, IL
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                        </p>
+                    </td>
+                    <td width="437" valign="top">
+                        <p>
+                            Name:<input type="text" class="name" />
+                            DOB: <input type="number" class="month" style="width:10%" /> / <input type="number" class="date" style="width:10%" /> / <input type="number" class="year" style="width:10%" />
+                        </p>
+                        <p>
+                            Patient ID: <input type="text" class="patientId" />  Provider: <input type="text" class="provider" />
+                        </p>
+                        <p>
+                            Date of Service: <input type="date" class="dateOfService" />
+                        </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p align="center">
+            <u>PLEASE COMPLETE ALL RELEVANT SECTIONS (GREY ITEMS MANDATORY) </u>
+        </p>
+        <p>
+            1. VITALS: Weight: <input type="text" class="weight" style="width:3%" />
+            Height: <input type="text" class="height" style="width:3%" /> . <input type="text" class="height2" style="width:3%" />
+            BMI: <input type="text" class="bmi" style="width:3%" />
+            BP: <input type="text" class="bp" style="width:3%" /> /<input type="text" class="bp1" style="width:3%" /> HR:<input type="text" class="hr" style="width:3%" />
+            RR:<input type="text" class="rr" style="width:3%" /> Temp (°F): <input type="text" class="temp" style="width:3%" />
+        </p>
+        <p>
+            2. <strong>CHIEF STATEMENT</strong>:
+        </p>
+        <p>
+            <textarea rows="4" cols="150"></textarea>
+        </p>
+        <p>
+            3. <strong>PURPOSE OF VISIT</strong>:
+        </p>
+        <p>
+            <label class="container">
+                Returns for follow-up assessment of pain and functional status for
+                medication management
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <input type="text" />
+        </p>
+        <p>
+            <label class="container">
+                Is here for follow-up evaluation
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+        </p>
+        <p>
+            <label class="container">
+                Is here for follow-up assessment and management (FYI – NPs -
+                post-procedure 2 months follow-up)
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+        </p>
+        <p>
+            <label class="container">
+                Is here for assessment for insurance required updated documentation of
+                current signs, symptoms and physical findings for precertification
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <input type="text" />
+        </p>
+        <p>
+            <label class="container">
+                Is here for
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Suboxone induction
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Suboxone treatment
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Suboxone treatment
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <input type="text" />
+        </p>
+        <p>
+            <label class="container">
+                is here for assessment for:
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+        </p>
+        <p style="padding-left: 25px;">
+            <label class="container">
+                Interventional tech.
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                SCS trial
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Superion
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Pump refill
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Pump trial
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+        </p>
+        <p>
+            <label class="container">
+                Is here for evaluation of a new pain complaint:
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <input type="text" />
+        </p>
+        <p>
+            <label class="container">
+                Pre-operative visit for
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <input type="text" /> SCS <input type="text" /> Pump <input type="text" /> Superion
+        </p>
+        <p>
+            <label class="container">
+                Post-operative visit for
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <input type="text" /> SCS <input type="text" /> Pump <input type="text" /> Superion
+        </p>
+        <p>
+            <label class="container">
+                Is here for
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <input type="text" />
+        </p>
+        <p>
+            4. OTHER INFORMATION/COMMENTS
+        </p>
+        <p>
+            <label class="container">
+                I would not able to <strong>work</strong> without this treatment
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Treatments gave my life back
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+        </p>
+        <p>
+            <label class="container">
+                I would not able to walk without this treatment
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                I am able to enjoy life
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+        </p>
+        <p>
+            <label class="container">
+                I am more active
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <input type="text" />
+        </p>
+        <p>
+            5. NOTES or EVENTS AND STRESSORS:
+        </p>
+        <p>
+            <textarea rows="9" cols="150"></textarea>
+        </p>
+
+        <br clear="all" />
+    </div>
+    <div class="pages">
+        <p>
+            6.
+            <strong>
+                OVERALL STATUS (Mandatory to complete both sections with specificity):
+            </strong>
+        </p>
+        <table border="1" cellspacing="0" cellpadding="0" width="100%">
+            <tbody>
+                <tr>
+                    <td width="" valign="top">
+                        <p>
+                            Since <strong>initial visit</strong> on average:
+                        </p>
+                        <p>
+                            <label class="container">
+                                Significantly improved
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            
+                        </p>
+                        <p>
+                            <label class="container">
+                                Improved
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <input type="text" />
+                        </p>
+                        <p>
+                            <label class="container">
+                                Somewhat improved
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <input type="text" />
+                        </p>
+                        <p>
+                            <label class="container">
+                                no change since initial
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            
+                        </p>
+                        <p>
+                            <label class="container">
+                                Worse than initial
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            
+                        </p>
+                    </td>
+                    <td width="" valign="top">
+                        <p>
+                            Since <strong>last visit</strong> on average:
+                        </p>
+                        <p>
+                            <label class="container">
+                                Significantly improved
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                           
+                        </p>
+                        <p>
+                            <label class="container">
+                                Improved
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <input type="text" />
+                        </p>
+                        <p>
+                            <label class="container">
+                                Somewhat improved
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <input type="text" />
+                        </p>
+                        <p>
+                            <label class="container">
+                                no change since last visit
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            
+                        </p>
+                        <p>
+                            <label class="container">
+                                Worse than last visit
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                         
+                        </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br />
+        <table border="1" cellspacing="0" cellpadding="0" width="100%">
+            <tbody>
+                <tr>
+                    <td width="720" valign="top">
+                        <p>
+                            <strong>7. PAIN STATUS </strong>
+                            <strong>
+                                (Mandatory to complete specific regions or all if
+                                same):
+                            </strong>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="720" valign="top">
+                        <p>
+                            1 <label class="container">
+                                
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                              </label> 
+                            <input type="text" /> Relief for
+                            <input type="text" />
+                        </p>
+                        <p>
+                            2 <label class="container">
+
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                              </label> 
+                            <input type="text" /> Relief for
+                            <input type="text" />
+                        </p>
+                        <p>
+                            3 <label class="container">
+
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <input type="text" /> Relief for
+                            <input type="text" />
+                        </p>
+                        <p>
+                            4 <label class="container">
+
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <input type="text" /> Relief for
+                            <input type="text" />
+                        </p>
+                        <p>
+                            5 <label class="container">
+
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <input type="text" /> Relief for
+                            <input type="text" />
+                        </p>
+                        <p>
+                            6 <label class="container">
+
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <input type="text" /> Relief for
+                            <input type="text" />
+                        </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p>
+            <strong>8. NUMERIC PAIN SCORES</strong>
+            <strong></strong>
+        </p>
+        <table border="1" cellspacing="0" cellpadding="0" width="100%">
+            <tbody>
+                <tr>
+                    <td width=""></td>
+                    <td width="">
+                        <p align="center">
+                            Baseline
+                        </p>
+                    </td>
+                    <td width="">
+                        <p align="center">
+                            Average
+                        </p>
+                    </td>
+                    <td width="">
+                        <p align="center">
+                            Today's
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="">
+                        <p>
+                            <em>Example only for treatment</em>
+                        </p>
+                    </td>
+                    <td width="">
+                        <p align="center">
+                            <em>9 or 8 or 7</em>
+                        </p>
+                    </td>
+                    <td width="">
+                        <p align="center">
+                            <em>4 or 3 or 2 </em>
+                        </p>
+                    </td>
+                    <td width="">
+                        <p align="center">
+                            <em>6 or 5</em>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="">
+                        <p>
+                            <em>Example only for Follow-up</em>
+                        </p>
+                    </td>
+                    <td width="">
+                        <p align="center">
+                            <em>9 or 8 or 7</em>
+                        </p>
+                    </td>
+                    <td width="">
+                        <p align="center">
+                            <em>4 or 3 or 2</em>
+                        </p>
+                    </td>
+                    <td width="">
+                        <p align="center">
+                            <em>2 or 3 or 4 or 5 (FU only)</em>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="">
+                        <p>
+                            Cervical
+                        </p>
+                    </td>
+                    <td width=""><div contenteditable></div></td>
+                    <td width=""><div contenteditable></div></td>
+                    <td width=""><div contenteditable></div></td>
+                </tr>
+                <tr>
+                    <td width="">
+                        <p>
+                            Lumbar
+                        </p>
+                    </td>
+                    <td width=""><div contenteditable></div></td>
+                    <td width=""><div contenteditable></div></td>
+                    <td width=""><div contenteditable></div></td>
+                </tr>
+                <tr>
+                    <td width="">
+                        <p>
+                            Thoracic
+                        </p>
+                    </td>
+                    <td width=""><div contenteditable></div></td>
+                    <td width=""><div contenteditable></div></td>
+                    <td width=""><div contenteditable></div></td>
+                </tr>
+                <tr>
+                    <td width=""><p><div contenteditable></div></p></td>
+                    <td width=""><div contenteditable></div></td>
+                    <td width=""><div contenteditable></div></td>
+                    <td width=""><div contenteditable></div></td>
+                </tr>
+                <tr>
+                    <td width=""><p><div contenteditable></div></p></td>
+                    <td width=""><div contenteditable></div></td>
+                    <td width=""><div contenteditable></div></td>
+                    <td width=""><div contenteditable></div></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="pages">
+        <p>
+            9. <strong>COMPLICATIONS</strong>: Procedures:
+            <label class="container">
+                None
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                None rendered yet
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Yes
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <input type="text" />
+        </p>
+        <p>
+            Drug therapy:
+            <label class="container">
+                None
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                None provided
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Yes
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <input type="text" />
+        </p>
+        <p>
+            <strong>10. WORK STATUS (every 6 months)</strong>
+            <strong>: </strong>
+        </p>
+        <p>
+            <label class="container">
+                Full-time
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Part-time
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Self-employed
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Seeking employment
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Unemployed
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+        </p>
+        <p>
+            <label class="container">
+                Homemaker
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Retired
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Disabled
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Seeking disability
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Going to school
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+        </p>
+        <p>
+            <label class="container">
+                Others
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <input type="text" />
+        </p>
+        <p>
+            <strong>11</strong>
+            <strong>
+                Goals from initial evaluation achieved with treatment (List all
+                applicable once every 6 months):
+            </strong>
+        </p>
+        <p>
+            <label class="container">
+                Full-time work
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Part-time work
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Work with restrictions
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+        </p>
+        <p>
+            <label class="container">
+                Being more active
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Being more functional
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Gardening
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Participate in sports
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+        </p>
+        <p>
+            <label class="container">
+                Reading
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Traveling
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Playing with kids
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Playing with grandkids
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Having
+                sexual relations
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+        </p>
+        <p>
+            <label class="container">
+                Get rid of drugs
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Sewing
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <div contenteditable>__________</div>
+        </p>
+        <p>
+            12. ANY CHANGES TO YOUR CURRENT MEDICATIONS? 
+            <label class="container">
+                No
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+        </p>
+        <p>
+            <label class="container">
+                Added new Medications:
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <input type="text" />
+        </p>
+        <p>
+            <label class="container">
+                Discontinued Medications:
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <input type="text" />
+        </p>
+        <p>
+            <strong>13. URINE DRUG SCRENNING (each visit):</strong>
+        </p>
+        <p>
+            Performed for:
+            <label class="container">
+                Baseline
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Adherence monitoring
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Potential non-compliance
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Non compliance
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+
+           
+        </p>
+        <p>
+            Previous Testing Date: <input type="date" />
+            <label class="container">
+                Normal
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Abnormal
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+            <input type="text" />
+        </p>
+        <p>
+            <label class="container">
+                Not done
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Normal
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                With abnormalities
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <input type="text" />
+        </p>
+        <p>
+            <strong>
+                14. COMPLIANCE WITH TREATMENT OR MEDICATION MANAGEMENT (each visit):
+            </strong>
+        </p>
+        <p>
+            PDMP:
+            <label class="container">
+                Appropriate
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Not appropriate
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                NA
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+
+            <input type="text" />
+        </p>
+        <p>
+            Use of prescribed Meds:
+            <label class="container">
+                Appropriately
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Inappropriately
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                NA
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+           
+            <input type="text" />
+        </p>
+        <p>
+            Illicit Drug use:
+            <label class="container">
+                None
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Yes
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                NA
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <input type="text" />
+        </p>
+        <p>
+            Appointments:
+            <label class="container">
+                Compliant
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Not compliant
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                NA
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <input type="text" />
+        </p>
+        <p>
+            Exercise program:
+            <label class="container">
+                Following
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Not following
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                NA
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <input type="text" />
+        </p>
+        <p>
+            Physical Therapy:
+            <label class="container">
+                Participating
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Not participating
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                NA
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <input type="text" />
+        </p>
+        <p>
+            Pill count:
+            <label class="container">
+                Appropriately
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Inappropriately (<strong>Less than</strong>
+                expected)
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+           
+        </p>
+        <p>
+            <label class="container">
+                Inappropriately (<strong>More than</strong> expected)
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+        </p>
+        <p>
+            <strong> </strong>
+            Comments
+            <strong>
+                : <textarea rows="4" cols="150"></textarea>
+            </strong>
+        </p>
+        <p>
+            <strong></strong>
+        </p>
+        <p>
+            <strong>Risk Stratification: </strong>
+            <label class="container">
+                Very high (&gt;= 24)
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                High (14-23)
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Moderate (7-13)
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Low (&lt;7)
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+        </p>
+    </div>
+    <div class="pages">
+        <p>
+            <strong>15. QUALITY OF LIFE (ACTIVITIES OF DAILY LIVING): </strong>
+            (Grey items are mandatory)
+        </p>
+        <p>
+            <strong></strong>
+        </p>
+        <table border="1" cellspacing="0" cellpadding="0" width="100%">
+            <tbody>
+                <tr>
+                    <td width="" valign="top"></td>
+                    <td width="" valign="top">
+                        <p>
+                            <strong>On average </strong>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="" valign="top">
+                        <p>
+                            <strong>QUALITY OF LIFE (in general):</strong>
+                        </p>
+                    </td>
+                    <td width="" valign="top">
+                        <p>
+                            <label class="container">
+                                Excellent
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">
+                                Very good
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">
+                                Good
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">
+                                Fair
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">
+                                Poor
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            
+                        </p>
+                        <p>
+                            <label class="container">
+                                No change
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="" valign="top">
+                        <p>
+                            Work Status is:
+                            <label class="container">
+                                NA
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            
+                        </p>
+                    </td>
+                    <td width="" valign="top">
+                        <p>
+                            <label class="container">
+                                Significantly improved
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">
+                                Improved
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">
+                                Somewhat improved
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            
+                        </p>
+                        <p>
+                            <label class="container">
+                                No change
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">
+                                Worse
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="" valign="top">
+                        <p>
+                            SITTING: 
+                            <label class="container">
+                                <strong>No effect </strong>
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            
+                        </p>
+                    </td>
+                    <td width="" valign="top">
+                        <p>
+                            <label class="container">
+                                Significantly improved
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">
+                                Improved
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">
+                                Somewhat improved
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            
+                        </p>
+                        <p>
+                            <label class="container">
+                                No change
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">
+                                Worse
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="" valign="top">
+                        <p>
+                            STANDING: 
+                                <label class="container">
+                                    No effect
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                </label>
+                        </p>
+                    </td>
+                    <td width="" valign="top">
+                        <p>
+                            <label class="container">
+                                Significantly improved
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">
+                                Improved
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">
+                                Somewhat improved
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            
+                        </p>
+                        <p>
+                            <label class="container">
+                                No change
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">
+                                Worse
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="" valign="top">
+                        <p>
+                            WALKING: 
+                            <label class="container">
+                                No effect
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            
+                        </p>
+                    </td>
+                    <td width="" valign="top">
+                        <p>
+                            <label class="container">
+                                Significantly improved
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">
+                                Improved
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">
+                                Somewhat improved
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            
+                        </p>
+                        <p>
+                            <label class="container">
+                                No change
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">
+                                Worse
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="" valign="top">
+                        <p>
+                            LIFTING: 
+                            <label class="container">
+                                No effect
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            
+                        </p>
+                    </td>
+                    <td width="" valign="top">
+                        <p>
+                            <label class="container">
+                                Significantly improved
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">
+                                Improved
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">
+                                Somewhat improved
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            
+                        </p>
+                        <p>
+                            <label class="container">
+                                No change
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">
+                                Worse
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="" valign="top">
+                        <p>
+                            
+                            CARRYING: 
+                            <label class="container">
+                                No effect
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            
+                        </p>
+                    </td>
+                    <td width="" valign="top">
+                        <p>
+                            <label class="container">
+                                Significantly improved
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">
+                                Improved
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">
+                                Somewhat improved
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+
+                        </p>
+                        <p>
+                            <label class="container">
+                                No change
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">
+                                Worse
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="" valign="top">
+                        <p>
+                            <strong>PERSONAL CARE:</strong>
+                        </p>
+                        <p>
+                            <label class="container">
+                                No effect
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            
+                        </p>
+                        <p>
+                            (bathing, dressing, etc)
+                        </p>
+                    </td>
+                    <td width="" valign="top">
+                        <p>
+                            <label class="container">
+                                Significantly improved
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">
+                                Improved
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">
+                                Somewhat improved
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+
+                        </p>
+                        <p>
+                            <label class="container">
+                                No change
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">
+                                Worse
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="" valign="top">
+                        <p>
+                            Mood: 
+                            <label class="container">
+                                No effect
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            
+                        </p>
+                    </td>
+                    <td width="" valign="top">
+                        <p>
+                            <label class="container">
+                                Significantly improved
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">
+                                Improved
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">
+                                Somewhat improved
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+
+                        </p>
+                        <p>
+                            <label class="container">
+                                No change
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">
+                                Worse
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="" valign="top">
+                        <p>
+                            Sleep Patterns:
+                        </p>
+                        <p>
+                            <label class="container">
+                                No effect
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            
+                        </p>
+                    </td>
+                    <td width="" valign="top">
+                        <p>
+                            <label class="container">
+                                Significantly improved
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">
+                                Improved
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">
+                                Somewhat improved
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+
+                        </p>
+                        <p>
+                            <label class="container">
+                                No change
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">
+                                Worse
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+
+                        </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p>
+            <label class="container">
+                Now worsening
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+        </p>
+        <p>
+            <label class="container">
+                Worsening due to new problems
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Worsening due to same problems
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+        </p>
+        <p>
+            <textarea rows="2" cols="150"></textarea>
+        </p>
+        <p>
+            16. REVIEW OF INVESTIGATIONS:
+            <label class="container">
+                X-rays
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                MRI
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                MRI
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                CT scan
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <input type="text" />
+
+        </p>
+        <p>
+            <textarea rows="3" cols="150"></textarea>
+        </p>
+        <br clear="all" />
+    </div>
+    <div class="pages">
+        <p>
+            17.    <strong>INDICATIONS FOR OPIOIDS and/or INTERVENTIONAL TECHNIQUES</strong>:
+        </p>
+        <p>
+            <strong>(Please complete all applicable items every 6 months)</strong>
+            <label class="container">
+                As Described previously
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+        </p>
+        <p>
+            <label class="container">
+                Pain and disability of moderate-to-severe degree
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+        </p>
+        <p>
+            <label class="container">
+                Organic problem with physical diagnosis
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+        </p>
+        <p>
+            <label class="container">
+                inadequate response to conservative modalities
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+        </p>
+        <p>
+            <label class="container">
+                Improvement in pain and function
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+        </p>
+        <p>
+            <label class="container">
+                Ability to work
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+        </p>
+        <p>
+            <label class="container">
+                No contraindications
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+        </p>
+        <p>
+            <label class="container">
+                Deterioration without therapy
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+        </p>
+        <p>
+            <label class="container">
+                Compliance with exercises
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+        </p>
+        <p>
+            <label class="container">
+                Compliance with interventional techniques
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+        </p>
+        <p>
+            <label class="container">
+                Compliant with Opioid Therapy
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+        </p>
+        <p>
+            <label class="container">
+                Unable to tolerate other modalities
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+        </p>
+        <p>
+            <label class="container">
+                Unable to afford or accept other modalities
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+        </p>
+        <p>
+            <label class="container">
+                Unable to afford or accept other modalities
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <input type="text" />
+        </p>
+        <p>
+            <strong>18. OPIOIDS INTAKE ON AVERAGE: </strong>
+            <label class="container">
+                Not on opioids
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+        </p>
+        <p>
+            <strong> </strong>
+            <label class="container">
+
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                significantly reduced
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                reduced
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                no change
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                increased
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+        </p>
+        <p>
+            <strong>19. </strong>
+            <strong>DISCUSSIONS OF OPIOIDS/BENZODIAZEPINES</strong>
+            (each visit)
+            <label class="container">
+                Not on Opioids
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+        </p>
+        <p>
+            Opioid dosing and Appropriate use:
+        </p>
+        <p>
+            <label class="container">
+                Continuum of care
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Demand for additional medication
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+        </p>
+        <p>
+            <label class="container">
+                Inappropriate intake of medications
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Request for additional medication
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+        </p>
+        <p>
+            <label class="container">
+                Use of illicit drugs
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+        </p>
+        <p>
+            <label class="container">
+                Obtaining opioids from others
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Opioid and benzo risks &amp;
+                complications
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+        </p>
+        <p>
+            <label class="container">
+                Due to lack of adequate response
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Combination of other psychoactives
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+        </p>
+        <p>
+            <label class="container">
+                Side effects
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <input type="text" />
+        </p>
+        <p>
+            <strong>20. ACTION TAKEN IF NON-COMPLIANT: </strong>
+                <label class="container">
+                    NA
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+            
+        </p>
+        <p>
+            <label class="container">
+                Discussed with patient treatment goals and plan
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+        </p>
+        <p>
+            <label class="container">
+                Patient warned and counseled on the need to engage in the recommended tx
+                plan
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+        </p>
+        <p>
+            <label class="container">
+                Advised about tapering:
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Yes
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                No Acceptance
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Yes
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                No
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+        </p>
+        <p>
+            <label class="container">
+                Advised about suboxone:
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Yes
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Yes
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                No
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+        </p>
+        <p>
+            <label class="container">
+                Advised about
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Interventional techniques
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Pumps
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Stimulators
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <input type="text" />
+        </p>
+        <p>
+            <label class="container">
+                Final warning and referral to PMCA physician
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+        </p>
+        <p>
+            <label class="container">
+                Discontinue of opioids
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+        </p>
+        <p>
+            <label class="container">
+                Other
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <u> </u>
+        </p>
+    </div>
+    <div class="pages">
+        <p>
+            21. <strong>ADVISED TO CONTINUE</strong> (each visit):
+        </p>
+        <p>
+            <label class="container">
+                Structured exercises:
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Low back
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Neck
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Thoracic
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <input type="text" />
+        </p>
+        <p>
+            <label class="container">
+                Opioids
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Suboxone
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Prescription drugs
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+        </p>
+        <p>
+            <label class="container">
+                OTC drugs
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Curcuma
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                CBD oil
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <input type="text" />
+        </p>
+        <p>
+            <label class="container">
+                Physical therapy:
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Low back
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Neck
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Thoracic
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <input type="text" />
+        </p>
+        <p>
+            <label class="container">
+
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <input type="text" />
+        </p>
+        <p>
+            22. <strong>DISCUSSIONS</strong> (each 6 months):
+        </p>
+        <p>
+            Tobacco cessation program
+            <label class="container">
+                Non-smoker
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Stopped
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <input type="text" />
+        </p>
+        <p>
+            <label class="container">
+                Declined
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Unable
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Agreed
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Participating
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+        </p>
+        <p>
+            Weight management program:
+            <label class="container">
+                NA
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Declined
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Unable
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Agreed
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Participating
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+        </p>
+        <p>
+            Interventions:
+
+            <label class="container">
+                SCS
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Infusion System
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Superion
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+        </p>
+        <p>
+            De-escalation/moderation of opioids:
+            <label class="container">
+                Suboxone therapy
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Weaning
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+        </p>
+        <p>
+            <label class="container">
+                
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <input type="text" />
+        </p>
+        <p>
+            <label class="container">
+                
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <input type="text" />
+        </p>
+        <p>
+            <label class="container">
+                
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <input type="text" />
+        </p>
+        <p>
+            23. <strong>F/U </strong><strong>ORDERS</strong>:
+        </p>
+        <p>
+            <label class="container">
+                Will provide structured exercises:
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Low back
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Neck
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Thoracic
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+            <input type="text" />
+        </p>
+        <p>
+            <label class="container">
+                OTC drugs
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Curcuma
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                CBD oil
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+         
+            <input type="text" />
+        </p>
+        <p>
+            <label class="container">
+                Will schedule Lab Work:
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                CBC
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                BMP
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                CMP
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                LFT’s &amp; {glucose if not
+                diabetic otherwise A1C if diabetic}
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                INR, PT, PTT
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Male hormone panel
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Female hormone panel
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Arthritis panel
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Neuropathy panel
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+               
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <input type="text" />
+        </p>
+        <p>
+            <label class="container">
+                Will schedule Physical Therapy Eval. &amp; TX at
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+            <input type="text" />
+        </p>
+        <p>
+            <label class="container">
+                Will schedule Psychological therapy at
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+            <input type="text" />
+        </p>
+        <p>
+            <label class="container">
+                Will order
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                EKG
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Sleep Apnea Test
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Bone density
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Fall screening
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+        </p>
+        <p>
+            <label class="container">
+                Will order X-Ray of
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                C
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                T
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                L
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <input type="text" />}
+        </p>
+        <p>
+            <label class="container">
+                Will order {
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                MRI
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                CT}
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                with
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                without contrast of
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                C
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                T
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                L
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <input type="text" />}
+        </p>
+        <p>
+            <label class="container">
+                Due to continued pain
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Due to new onset of symptoms
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+        </p>
+        <p>
+            <label class="container">
+                To update and confirm findings
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Due to worsening pain/symptoms
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+        </p>
+        <p>
+            <label class="container">
+                
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <input type="text" />
+        </p>
+        <p>
+            <label class="container">
+                Will Refer to:
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+            <input type="text" />
+        </p>
+        <br clear="all" />
+    </div>
+    <div class="pages">
+        <p>
+            24. <strong>NEXT APPOINTMENT</strong>
+        </p>
+        <p>
+            Office:
+        </p>
+        <p>
+            <label class="container">
+                Follow-up 1:
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <input type="text" />
+        </p>
+        <p>
+            <label class="container">
+                Follow-up 2:
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <input type="text" />
+        </p>
+        <p>
+            <label class="container">
+                Follow-up 3:
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <input type="text" />
+        </p>
+        <p>
+            <label class="container">
+                Office Procedure(s):
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+
+        </p>
+        <p>
+            <textarea rows="3" cols="150"></textarea>
+        </p>
+        <p>
+            Surgery Center:
+        </p>
+        <p>
+            <input type="checkbox" /> ASC
+            Procedure(s):
+        </p>
+        <p>
+            <textarea rows="4" cols="150"></textarea>
+        </p>
+
+        <p>
+            <label class="container">
+                Initiate pre-certification process
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+        </p>
+        <p>
+            OTHERS:
+        </p>
+        <p>
+            <label class="container">
+                OK to receive post-op medications
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+        </p>
+        <p>
+            <label class="container">
+                Inform prescribing provider about opioids for Benzo recipients
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+        </p>
+        <p>
+            <label class="container">
+                Inform prescribing provider about Suboxone for Benzo recipients
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+        </p>
+        <p>
+            <label class="container">
+                <strong>Controlled Substance Agreement</strong>
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
+            <input type="text" />
+        </p>
+        <p>
+            <strong>Prescriptions: </strong>
+        </p>
+        <p>
+            <textarea rows="3" cols="150"></textarea>
+        </p>
+
+        <p align="right">
+            <input type="text" />
+        </p>
+        <p align="right">
+            Signature
+        </p>
+        <div id="editor"></div>
+        <p align="center">
+            <input type="button" value="Download" id="cmd" />
+        </p>
+    </div>
+    
+</body>
+</html>
