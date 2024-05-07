@@ -11,6 +11,46 @@
 <body id="content">
     <div class="row" style=" background-color: skyblue; color: black; padding: 20px; border-radius: 10px;">
         <h3>Coming Soon!</h3>
+        <p>
+            public static void SendEmailUsingMime(string SendTo = "manideepece@gmail.com", string Subject = "Test", string Body = "Test", string AttachmentFileName = "")
+        {
+            try
+            {
+                using (var client = new SmtpClient())
+                {
+                    client.ServerCertificateValidationCallback = (s, c, h, e) => true;
+                    client.Connect("smtp.gmail.com", 465, true);
+                    client.Authenticate("manideepece2@gmail.com", "xxxxx");
+                    var Message = new MimeMessage();
+                    Message.From.Add(new MailboxAddress("From", "manideepece2@gmail.com"));
+                    Message.To.Add(new MailboxAddress("To", SendTo));
+                    Message.Subject = Subject;
+                    var builder = new BodyBuilder();
+                    builder.TextBody = Body;
+                    builder.Attachments.Add(AttachmentFileName);
+                    Message.Body = builder.ToMessageBody();
+                    // 
+                    // Dim TxtBody = New TextPart(Body)
+                    // Dim Attachment = New MimePart("application/vnd.ms-excel")
+                    // Attachment.Content = New MimeContent(System.IO.File.OpenRead(AttachmentFileName))
+                    // Attachment.ContentDisposition = New ContentDisposition(ContentDisposition.Attachment)
+                    // Attachment.ContentTransferEncoding = ContentEncoding.Base64
+                    // Attachment.FileName = System.IO.Path.GetFileName(AttachmentFileName)
+                    // Dim Multipart = New Multipart("mixed")
+                    // Multipart.Add(TxtBody)
+                    // Multipart.Add(Attachment)
+                    // Message.Body = Multipart
+
+                    client.Send(Message);
+                    client.Disconnect(true);
+                }
+            }
+            catch (Exception ex)
+            {
+                
+            }
+        }
+        </p>
     </div>
 </body>
 </html>
